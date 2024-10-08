@@ -11,7 +11,6 @@ const (
 )
 
 type PropertyViolation struct {
-	error
 	Property string
 }
 
@@ -202,7 +201,7 @@ const (
 	MeasurandPowerReactiveExport          Measurand      = "Power.Reactive.Export"
 	MeasurandPowerReactiveImport          Measurand      = "Power.Reactive.Import"
 	MeasurandRPM                          Measurand      = "RPM"
-	MeasueandSoC                          Measurand      = "SoC"
+	MeasurandSoC                          Measurand      = "SoC"
 	MeasurandTemperature                  Measurand      = "Temperature"
 	MeasurandVoltage                      Measurand      = "Voltage"
 	PhaseL1                               Phase          = "L1"
@@ -233,6 +232,7 @@ const (
 	UnitOfMeasureA                        UnitOfMeasure  = "A"
 	UnitOfMeasureV                        UnitOfMeasure  = "V"
 	UnitOfMeasureCelsius                  UnitOfMeasure  = "Celsius"
+	UnitOfMeasureCelcius                  UnitOfMeasure  = "Celcius"
 	UnitOfMeasureFahrenheit               UnitOfMeasure  = "Fahrenheit"
 	UnitOfMeasureK                        UnitOfMeasure  = "K"
 	UnitOfMeasurePercent                  UnitOfMeasure  = "Percent"
@@ -261,7 +261,7 @@ func isValidValueFormat(fl validator.FieldLevel) bool {
 func isValidMeasurand(fl validator.FieldLevel) bool {
 	measurand := Measurand(fl.Field().String())
 	switch measurand {
-	case MeasueandSoC, MeasurandCurrentExport, MeasurandCurrentImport, MeasurandCurrentOffered, MeasurandEnergyActiveExportInterval, MeasurandEnergyActiveExportRegister, MeasurandEnergyReactiveExportInterval, MeasurandEnergyReactiveExportRegister, MeasurandEnergyReactiveImportRegister, MeasurandEnergyReactiveImportInterval, MeasurandEnergyActiveImportInterval, MeasurandEnergyActiveImportRegister, MeasurandFrequency, MeasurandPowerActiveExport, MeasurandPowerActiveImport, MeasurandPowerReactiveImport, MeasurandPowerReactiveExport, MeasurandPowerOffered, MeasurandPowerFactor, MeasurandVoltage, MeasurandTemperature, MeasurandRPM:
+	case MeasurandSoC, MeasurandCurrentExport, MeasurandCurrentImport, MeasurandCurrentOffered, MeasurandEnergyActiveExportInterval, MeasurandEnergyActiveExportRegister, MeasurandEnergyReactiveExportInterval, MeasurandEnergyReactiveExportRegister, MeasurandEnergyReactiveImportRegister, MeasurandEnergyReactiveImportInterval, MeasurandEnergyActiveImportInterval, MeasurandEnergyActiveImportRegister, MeasurandFrequency, MeasurandPowerActiveExport, MeasurandPowerActiveImport, MeasurandPowerReactiveImport, MeasurandPowerReactiveExport, MeasurandPowerOffered, MeasurandPowerFactor, MeasurandVoltage, MeasurandTemperature, MeasurandRPM:
 		return true
 	default:
 		return false
@@ -291,7 +291,7 @@ func isValidLocation(fl validator.FieldLevel) bool {
 func isValidUnitOfMeasure(fl validator.FieldLevel) bool {
 	unitOfMeasure := UnitOfMeasure(fl.Field().String())
 	switch unitOfMeasure {
-	case UnitOfMeasureA, UnitOfMeasureWh, UnitOfMeasureKWh, UnitOfMeasureVarh, UnitOfMeasureKvarh, UnitOfMeasureW, UnitOfMeasureKW, UnitOfMeasureVA, UnitOfMeasureKVA, UnitOfMeasureVar, UnitOfMeasureKvar, UnitOfMeasureV, UnitOfMeasureCelsius, UnitOfMeasureFahrenheit, UnitOfMeasureK, UnitOfMeasurePercent:
+	case UnitOfMeasureA, UnitOfMeasureWh, UnitOfMeasureKWh, UnitOfMeasureVarh, UnitOfMeasureKvarh, UnitOfMeasureW, UnitOfMeasureKW, UnitOfMeasureVA, UnitOfMeasureKVA, UnitOfMeasureVar, UnitOfMeasureKvar, UnitOfMeasureV, UnitOfMeasureCelsius, UnitOfMeasureCelcius, UnitOfMeasureFahrenheit, UnitOfMeasureK, UnitOfMeasurePercent:
 		return true
 	default:
 		return false
@@ -329,4 +329,7 @@ func init() {
 	_ = Validate.RegisterValidation("phase16", isValidPhase)
 	_ = Validate.RegisterValidation("location16", isValidLocation)
 	_ = Validate.RegisterValidation("unitOfMeasure", isValidUnitOfMeasure)
+	_ = Validate.RegisterValidation("certificateSigningUse16", isValidCertificateSigningUse)
+	_ = Validate.RegisterValidation("certificateUse16", isValidCertificateUse)
+	_ = Validate.RegisterValidation("genericStatus16", isValidGenericStatus)
 }
