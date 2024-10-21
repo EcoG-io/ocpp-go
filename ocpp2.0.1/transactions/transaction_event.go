@@ -146,7 +146,7 @@ type TransactionEventRequest struct {
 	CableMaxCurrent    *int               `json:"cableMaxCurrent,omitempty"`           // The maximum current of the connected cable in Ampere (A).
 	ReservationID      *int               `json:"reservationId,omitempty"`             // The ID of the reservation that terminates as a result of this transaction.
 	TransactionInfo    Transaction        `json:"transactionInfo" validate:"required"` // Contains transaction specific information.
-	IDToken            *types.IdToken     `json:"idToken,omitempty" validate:"omitempty,dive"`
+	IDToken            *types.IdToken     `json:"idToken,omitempty"`
 	Evse               *types.EVSE        `json:"evse,omitempty" validate:"omitempty"`            // Identifies which evse (and connector) of the Charging Station is used.
 	MeterValue         []types.MeterValue `json:"meterValue,omitempty" validate:"omitempty,dive"` // Contains the relevant meter values.
 }
