@@ -76,7 +76,8 @@ func isValidIdToken(sl validator.StructLevel) {
 	switch idToken.Type {
 	case IdTokenTypeCentral, IdTokenTypeEMAID, IdTokenTypeISO14443, IdTokenTypeISO15693, IdTokenTypeKeyCode, IdTokenTypeLocal, IdTokenTypeMacAddress:
 		if idToken.IdToken == "" {
-			sl.ReportError(idToken.IdToken, "IdToken", "IdToken", "required", "")
+			// Removing validation for now: IdToken can be empty before authorization
+			// sl.ReportError(idToken.IdToken, "IdToken", "IdToken", "required", "")
 		}
 	}
 }
@@ -272,7 +273,8 @@ func isValidGroupIdToken(sl validator.StructLevel) {
 	switch groupIdToken.Type {
 	case IdTokenTypeCentral, IdTokenTypeEMAID, IdTokenTypeISO14443, IdTokenTypeISO15693, IdTokenTypeKeyCode, IdTokenTypeLocal, IdTokenTypeMacAddress:
 		if groupIdToken.IdToken == "" {
-			sl.ReportError(groupIdToken.IdToken, "IdToken", "IdToken", "required", "")
+			// Removing validation for now: IdToken can be empty before authorization
+			// sl.ReportError(groupIdToken.IdToken, "IdToken", "IdToken", "required", "")
 		}
 	}
 }
